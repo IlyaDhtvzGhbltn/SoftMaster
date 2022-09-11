@@ -1,0 +1,75 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.ViewModels"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Name="StorageManager"
+        Title="Storage Client" Height="280" Width="800" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Label Content="Get exists Areas"/>
+            <Border Padding="2">
+                <DatePicker SelectedDate="{Binding DateFilter}"></DatePicker>
+            </Border>
+            <Border Padding="2px">
+                <ComboBox Width="90px" ItemsSource="{Binding CargoTypes}" SelectedItem="{Binding SelectedType}"/>
+            </Border>
+            <Border Padding="5px">
+                <Button Command="{Binding GetAreas}">Get Areas</Button>
+            </Border>
+            <Border Padding="3px">
+                <fa:ImageAwesome Icon="Refresh" Foreground="DarkCyan" Spin="{Binding SpeenRotate}"/>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label Content="Create New Area:"/>
+            <Border Padding="5px">
+                <ComboBox ItemsSource="{Binding StorageGuids}" SelectedItem="{Binding SelectedStorageGuid}"/>
+            </Border>
+            <Border Padding="5px">
+                <TextBox Text="{Binding NewAreaTitle}" Width="80px" MaxLength="10"/>
+            </Border>
+            <Border Padding="5px">
+                <Button IsEnabled="{Binding AddAreaBtnEnabled}" Command="{Binding AddArea}">Add Area</Button>
+            </Border>
+        </StackPanel>
+        <DataGrid Grid.Row="3" ItemsSource="{Binding AreasCollection}" IsReadOnly="True"  
+                    ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                    CanUserResizeColumns="False" 
+                    CanUserDeleteRows="False" 
+                    AutoGenerateColumns="False"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Area Id" Binding="{Binding AreaId}"/>
+                <DataGridTextColumn Header="Storage Id" Binding="{Binding StorageId}"/>
+                <DataGridTextColumn Header="Area Title" Binding="{Binding AreasTitle}"/>
+                <DataGridTextColumn Header="Area Formation Date" Binding="{Binding AreaFormationDate}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border Padding="2px">
+                                <Button CommandParameter="{Binding}" Command="{Binding ElementName=StorageManager, Path=DataContext.DeleteArea}">
+                                    Delete
+                                </Button>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
