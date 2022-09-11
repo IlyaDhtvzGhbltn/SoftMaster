@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "fe4d8626-a52d-48ae-b4a5-911a6f31b2b1",
+		"name": "Storage.Api.v1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4507102"
+	},
+	"item": [
+		{
+			"name": "get areas by date and type",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44305/api/v1/area?Type=Powdered&Date=2022-08-31 19:25:05.4918538",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"api",
+						"v1",
+						"area"
+					],
+					"query": [
+						{
+							"key": "Type",
+							"value": "Powdered"
+						},
+						{
+							"key": "Date",
+							"value": "2022-08-31 19:25:05.4918538"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update area",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaId\":\"fecddc67-aa37-4f18-9b8f-703e938eb75c\",\r\n    \"areaTitle\" : \"105\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44305/api/v1/area",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"api",
+						"v1",
+						"area"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create area",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"StorageId\":\"56b89e41-5759-472e-9221-3a85cd79dc17\",\r\n    \"areaTitle\" : \"106\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44305/api/v1/area",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"api",
+						"v1",
+						"area"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all areas by date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44305/api/v1/area?Type=NotDetermined&Date=2022-09-11 19:00:05.4918538",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"api",
+						"v1",
+						"area"
+					],
+					"query": [
+						{
+							"key": "Type",
+							"value": "NotDetermined"
+						},
+						{
+							"key": "Date",
+							"value": "2022-09-11 19:00:05.4918538"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete area",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"areaId\": \"4ecf8c62-ad4e-4ebd-804a-c2835ce9887a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44305/api/v1/area",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44305",
+					"path": [
+						"api",
+						"v1",
+						"area"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
