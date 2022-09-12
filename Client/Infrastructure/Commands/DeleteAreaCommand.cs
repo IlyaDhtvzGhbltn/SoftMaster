@@ -7,6 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Client.Infrastructure.Commands
 {
@@ -26,6 +27,9 @@ namespace Client.Infrastructure.Commands
         protected async override Task ExecuteCommandAsync(object parameter)
         {
             AreaInfo model = parameter as AreaInfo;
+            if (model == null)
+                return;
+
             var request = new DeleteAreaRequest();
             request.AreaId = model.AreaId;
 
@@ -36,6 +40,8 @@ namespace Client.Infrastructure.Commands
             {
                 var area = _main.AreasCollection.First(x=>x.AreaId == request.AreaId);
                 _main.AreasCollection.Remove(area);
+                MessageBox.Show("Item deleted successful", "Info", MessageBoxButton.OK);
+                
             }
 
         }

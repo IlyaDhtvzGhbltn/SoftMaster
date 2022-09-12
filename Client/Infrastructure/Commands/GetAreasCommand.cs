@@ -23,7 +23,7 @@ namespace Client.Infrastructure.Commands
             _main.SpeenRotate = true;
             string url = $"area?Type={_main.SelectedType}&Date={_main.DateFilter}";
             var resp = await _handler.ExecuteRequestAsync<AreasListResponse>(url, "get", null);
-            if (resp != null)
+            if (resp != null && resp.AreasInfos.Count > 0)
             {
                 _main.AreasCollection = new System.Collections.ObjectModel.ObservableCollection<AreaInfo>();
                 _main.StorageGuids = new System.Collections.ObjectModel.ObservableCollection<Guid>();

@@ -45,26 +45,39 @@
                 <Button IsEnabled="{Binding AddAreaBtnEnabled}" Command="{Binding AddArea}">Add Area</Button>
             </Border>
         </StackPanel>
-        <DataGrid Grid.Row="3" ItemsSource="{Binding AreasCollection}" IsReadOnly="True"  
+        <DataGrid Grid.Row="3" ItemsSource="{Binding AreasCollection}" 
                     ScrollViewer.CanContentScroll="True"
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                     ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                     CanUserResizeColumns="False" 
                     CanUserDeleteRows="False" 
-                    AutoGenerateColumns="False"
-                  >
+                    AutoGenerateColumns="False">
+            
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Area Id" Binding="{Binding AreaId}"/>
-                <DataGridTextColumn Header="Storage Id" Binding="{Binding StorageId}"/>
-                <DataGridTextColumn Header="Area Title" Binding="{Binding AreasTitle}"/>
-                <DataGridTextColumn Header="Area Formation Date" Binding="{Binding AreaFormationDate}"/>
+                <DataGridTextColumn Header="Area Id" Binding="{Binding AreaId}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Storage Id" Binding="{Binding StorageId}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Area Title" Binding="{Binding AreasTitle}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Area Formation Date" Binding="{Binding AreaFormationDate}" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Border Padding="2px">
-                                <Button CommandParameter="{Binding}" Command="{Binding ElementName=StorageManager, Path=DataContext.DeleteArea}">
+                                <Button Foreground="Red" 
+                                        CommandParameter="{Binding}" 
+                                        Command="{Binding ElementName=StorageManager, Path=DataContext.DeleteArea}">
                                     Delete
                                 </Button>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border Padding="2px">
+                                <Button Foreground="Green" 
+                                        Command="{Binding ElementName=StorageManager, Path=DataContext.UpdateArea}"
+                                        CommandParameter="{Binding}">Update</Button>
                             </Border>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

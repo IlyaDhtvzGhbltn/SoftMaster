@@ -28,7 +28,10 @@ namespace Client.ViewModels
         public ObservableCollection<AreaInfo> AreasCollection 
         {
             get { return _areasCollection; }
-            set { SetProperty(ref _areasCollection, value); }
+            set 
+            { 
+                SetProperty(ref _areasCollection, value);
+            }
         }
 
         private ObservableCollection<Guid> _storageGuids;
@@ -114,6 +117,14 @@ namespace Client.ViewModels
             get 
             {
                 return new DeleteAreaCommand(this);
+            }
+        }        
+        
+        public ICommand UpdateArea
+        {
+            get 
+            {
+                return new UpdateCommand(this);
             }
         }
 
